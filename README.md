@@ -62,3 +62,4 @@ Un composant est un emplacement dans la page et il peut avoir :
       </body>
     </html>
 
+En terme de résultat, c'est la combinaison de jsx et babel qui permettent au composant de fonctionner.
