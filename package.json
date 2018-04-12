@@ -1,0 +1,14 @@
+{
+  "name": "react_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antoine Nouvene",
+  "license": "ISC"
+}
