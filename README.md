@@ -1,4 +1,4 @@
-Initiation à la librairie react.js
+Initiation à la librairie react.js de Facebook
 ----------------------------------
 
 > Pré-requis:
