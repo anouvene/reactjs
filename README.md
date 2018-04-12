@@ -1,7 +1,7 @@
-Initiation à la librairie react.js
-----------------------------------
+Initiation à la librairie react.js de Facebook
+----------------------------------------------
 
-> Pré-requis:
+> Pré-requis:git pull
 
     - Chrome
     - IDE Visual Studio (Pour installer les plugins)  ou autres
