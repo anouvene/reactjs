@@ -10,8 +10,9 @@ Initiation à la librairie react.js de Facebook
     - Le terminal
 
 > Lien vers Facebook react et jsx(javascript and xml):
-https://facebook.github.io/react/
-https://facebook.github.io/jsx
+
+    https://facebook.github.io/react/
+    https://facebook.github.io/jsx
 
 Et comment utiliser jsx aus ein de react : https://facebook.github.io/react/docs/jsx-in-depth.html
 
