@@ -111,6 +111,8 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
         );
     }
 
+
+&nbsp;
 > Créer une référence
 
     1 -  Stocker une instance d'un composant dans une variable pour ensuite la réutiliser ailleurs
@@ -136,6 +138,7 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
     ref = { (title) =>  this.title = title }
 
 
+&nbsp;
 > Exemple complet: référence + event + data binding bidirectionnel
 
     <!DOCTYPE html>
@@ -194,7 +197,111 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
     </html>
 
 
+&nbsp;
+> Exemple de composant faisant appel à un autre composant
+Nous allons modifier l'exemple précédent en créant un composant pour le champ de recherche
+
+    var mountNode = document.getElementById('mountNode');
+
+    // Composant search
+    class SearchComponent  extends React.Component {
+        constructor(){
+            super();
+            this.state = { query: ''}
+            this.update = this.update.bind(this);
+        }
+
+        update() {
+            this.setState( { query: this.input.value } )
+        }
+
+        render() {
+            return (
+                <div>
+                    <input ref = { (input) => this.input = input } onChange = { this.update } />
+                    <p>{ this.state.query }</p>
+                </div>
+            );
+        }
+    }
+
+    // Composant main
+    class MainComponent extends React.Component {
+        constructor(){
+            super();
+            this.state = { name: 'Tuan'};
+
+            // Penser à bind pour que le click pour avoir lieu
+            this.changeName = this.changeName.bind(this);
+        };
+
+        changeName(){
+            this.setState({ name: 'Minh Tuan' });
+            console.log(this.title);
+        }
+
+        render() {
+            return (
+                <div>
+                    <h1
+                        style = {{ color : this.props.color ? this.props.color : 'blue' }}
+                        onClick = { this.changeName }
+                        ref = { (title) =>  this.title = title }
+                    >Hello, { this.state.name }!</h1>
+                    <SearchComponent/>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<MainComponent color="red" name="Antoine" />, mountNode);
 
 
+> Communication entre composants : utiliser "props" pour échanger les infos entre les composants
 
+    ...
+
+    // Composant search
+    class SearchComponent  extends React.Component {
+        ...
+
+        update() {
+            ...
+            // Récupérer la propriété "onChange"
+            // Puis on transmet les infos saisis dans input à la méthode "logSearch" du composant parent
+            this.props.onChange(this.input.value);
+        }
+
+        render() {
+            return (
+                <div>
+                    ...
+                    // On affiche le nom du composant parent
+                    <p>{ this.props.parentName }</p>
+                </div>
+            );
+        }
+    }
+
+    // Composant main
+    class MainComponent extends React.Component {
+        ...
+
+        // Log infos du input
+        logSearch(value){
+            console.log(value);
+        }
+
+        render() {
+            return (
+                <div>
+                    ...
+                    // Injecter la méthode "logSearch" au composant enfant par la propriété "onChange"
+                    <SearchComponent parentName={ this.state.name } onChange={ this.logSearch }/>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<MainComponent color="red" name="Antoine" />, mountNode);
 
