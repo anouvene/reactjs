@@ -129,7 +129,8 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
         );
     }
 
-    3 - Stocker la référence à un élément d'un template dans une propriété du composant pour l'utiliser ailleurs dans une fonction par exemple
+    3 - Stocker la référence à un élément d'un template dans une propriété du composant
+        pour l'utiliser ailleurs dans une fonction par exemple
     changeName(){
           this.setState({name: 'Minh Tuan'});
           console.log(this.title);
@@ -161,7 +162,7 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
                   super();
                   this.state = { name: 'Tuan', query: '' };
 
-                  // Penser à bind pour que le click pour avoir lieu
+                  // Penser à bind pour que le click puisse avoir lieu
                   this.changeName = this.changeName.bind(this);
                   this.update = this.update.bind(this);
               };
