@@ -379,14 +379,14 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
 
 &nbsp;
-> Méthode permettant d'initialiser les valeur de props par défaut
+> Méthode permettant de fixer par défaut les valeurs des paramètres(props) d'un composant :
 
     Exemple, au lieu de fixer la proppriété "color" par défaut via le ternaire:
     class MainComponent extends React.Component {
         render(<strong style={{ color:this.props.color ? this.props.color : 'blue' }}>...</strong>);
     }
 
-    // On va plutôt utiliser la méthode "defaultProps" :
+    // On va plutôt utiliser la méthode "defaultProps" du composant :
     class MainComponent extends React.Component {
         render(<strong style={ {color: this.props.color} }>Hello world</strong>);
     }
