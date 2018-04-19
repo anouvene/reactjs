@@ -306,3 +306,104 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
     ReactDOM.render(<MainComponent color="red" name="Antoine" />, mountNode);
 
+
+&nbsp;
+> Cycle de vie d'un composant
+
+    // avant le rendu, peut écraser le state avec un setState
+    componentWillMount() {
+      console.log('componentWillMount');
+    }
+
+    // après le rendu, on accède aux refs
+    componentDidMount() {
+      console.log('componentDidMount');
+    }
+
+    // à la mise à jour des props, on peut aussi faire un setState sans rendu supplémentaire
+    componentWillReceiveProps() {
+      console.log('componentWillReceiveProps');
+    }
+
+    // à la mise à jour props ou state, on peut retourner false pour ne pas faire de rendu
+    shouldComponentUpdate() {
+      console.log('shouldComponentUpdate');
+
+      return true;
+    }
+
+    // à la mise à jour avant le rendu, on peut préparer avant le rendu
+    componentWillUpdate() {
+      console.log('componentWillUpdate');
+    }
+
+    // après le rendu, on accède au nouveau DOM
+    componentDidUpdate() {
+      console.log('componentDidUpdate');
+    }
+
+    // après le démontage, on peut faire du nettoyage ici
+    componentWillUnmount() {
+      console.log('componentWillUnmount');
+    }
+
+&nbsp;
+> Ecrire plus proprement le rendu d'un composant : https://facebook.github.io/react/docs/top-level-api.html
+
+    Avant:
+    ReactDOM.render(<MainComponent color="red" name="Antoine" />, mountNode);
+
+    Après:
+    let MainComponentElement = React.createElement(MainComponent, {color: "blue"});
+    ReactDOM.render(MainComponentElement, mountNode);
+
+
+&nbsp;
+> Méthode statique
+
+    class MainComponent extends React.Component {
+            constructor() {
+              super();
+              // Appel méthode statique
+              this.state = MainComponent.getData();
+              ...
+            }
+
+            static getData() {
+              return {actual: "Julien", users: ["Julien", "Christophe", "Roby"], items: []};
+            }
+    }
+
+    // Utilisation de la méthode statique en dehors de la classe
+    console.log(MainComponent.getData());
+
+
+&nbsp;
+> Méthode permettant d'initialiser les valeur de props par défaut
+
+    Exemple, au lieu de fixer la proppriété "color" par défaut via le ternaire:
+    class MainComponent extends React.Component {
+        render(<strong style={{ color:this.props.color ? this.props.color : 'blue' }}>...</strong>);
+    }
+
+    // On va plutôt utiliser la méthode "defaultProps" :
+    class MainComponent extends React.Component {
+        render(<strong style={ {color: this.props.color} }>Hello world</strong>);
+    }
+    MainComponent.defaultProps = {color: 'red'};
+
+    ...
+    // Rendu du composant "main"
+    let MainComponentElement = React.createElement(MainComponent, {color: 'blue'}); // Ecrase "defaultProps"
+    ReactDOM.render(MainComponentElement, mountNode);
+
+&nbsp;
+> Méthode de validation des proppriétés avec "PropTypes" : https://facebook.github.io/react/docs/reusable-components.html
+
+
+    MainComponent.PropTypes = {
+        color: React.PropTypes.string;
+
+        // Ou rendre obligatoire le parametre color dans le composant "MainComponent"
+        color: React.PropTypes.string;.isRequired;
+    }
