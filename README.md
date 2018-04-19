@@ -407,3 +407,13 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
         // Ou rendre obligatoire le parametre color dans le composant "MainComponent"
         color: React.PropTypes.string;.isRequired;
     }
+
+
+&nbsp;
+> React Router : https://github.com/ReactTraining/react-router
+
+    Ajouter ce lien en entete de page pour disposer de la librarie react-router:
+    <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.min.js"></script>
+
+
+
