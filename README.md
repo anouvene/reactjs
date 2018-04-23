@@ -124,7 +124,7 @@ En terme de résultat, c'est la combinaison de jsx et babel qui permettent au co
           <h1
               style = {{ color : this.props.color ? this.props.color : 'blue' }}
               onClick = { this.changeName }
-              ref = {{ (title) => console.log(title) }}
+              ref = {{ (title) => console.log(title) }} // title fait référence à l'élément h1
           >Hello, {this.state.name}!</h1>
         );
     }
@@ -402,6 +402,7 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
 
     MainComponent.PropTypes = {
+        // attribut color du composant doit être un string
         color: React.PropTypes.string;
 
         // Ou rendre obligatoire le parametre color dans le composant "MainComponent"
@@ -414,6 +415,49 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
     Ajouter ce lien en entete de page pour disposer de la librarie react-router:
     <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.min.js"></script>
+
+
+    Ajouter dans le script de l'application, les Router déclarations suivantes:
+    var Router = ReactRouter.Router;
+    var Route = ReactRouter.Route;
+    var DefaultRoute = ReactRouter.DefaultRoute;
+    var Link = ReactRouter.Link;
+    var RouteHandler = ReactRouter.RouteHandler;
+
+    // Composant Users
+    class UsersComponent extends React.Component {
+        render() {
+            return (
+                <div>
+                    <h1>Utilisateurs</h1>
+                    <p>lorem ipsum</p>
+                </div>
+            );
+        }
+    }
+
+    // Composant principal Main
+    class MainComponent extends React.Component {
+        render() {
+            return (
+                ...
+            );
+        }
+    }
+
+    ...
+    Exemple d'utilisation:
+
+    ReactDOM.render((
+        <Router>
+            <Route path="/" component={MainComponent} />
+            <Route path="/users" component={UsersComponent} />
+        </Router>
+    ), mountNode);
+
+
+
+
 
 
 
