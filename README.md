@@ -413,11 +413,11 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 &nbsp;
 > React Router : https://github.com/ReactTraining/react-router
 
-    Ajouter ce lien en entete de page pour disposer de la librarie react-router:
+    // Ajouter ce lien en entete de page pour disposer de la librarie react-router:
     <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.min.js"></script>
 
 
-    Ajouter dans le script de l'application, les Router déclarations suivantes:
+    // Ajouter dans le script de l'application, les Router déclarations suivantes:
     var Router = ReactRouter.Router;
     var Route = ReactRouter.Route;
     var DefaultRoute = ReactRouter.DefaultRoute;
@@ -446,7 +446,8 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
     }
 
     ...
-    Exemple d'utilisation:
+
+    // Exemple d'utilisation:
 
     ReactDOM.render((
         <Router>
