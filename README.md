@@ -411,7 +411,9 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
 
 &nbsp;
-> React Router : https://github.com/ReactTraining/react-router
+> React Router :
+    https://github.com/ReactTraining/react-router
+    https://github.com/ReactTraining/react-router/blob/v2.8.1/docs/guides/IndexRoutes.md
 
     // Ajouter ce lien en entete de page pour disposer de la librarie react-router:
     <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.min.js"></script>
@@ -424,13 +426,47 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
     var Link = ReactRouter.Link;
     var RouteHandler = ReactRouter.RouteHandler;
 
+    // Composant Menu + balise spécifique Link
+    // l'attribut activeClassName indique qu'on est dans le rendu du composant courant
+    class MenuComponent extends React.Component {
+        render() {
+            return (
+                <ul>
+                    <li><Link to={`/`} activeClassName="active">Home</Link></li>
+                    <li><Link to={`/users`} activeClassName="activeUsers">Users</Link></li>
+                    <li><Link to={`/users/user`} activeClassName="activeUsers">User 1</Link></li>
+                </ul>
+            );
+        }
+    }
+
     // Composant Users
     class UsersComponent extends React.Component {
         render() {
             return (
                 <div>
-                    <h1>Utilisateurs</h1>
-                    <p>lorem ipsum</p>
+                    <h1>Liste des utilisateurs</h1>
+                    <ul>
+                        <li>User 1</li>
+                        <li>User 2</li>
+                        <li>User 3</li>
+                    </ul>
+                </div>
+            );
+        }
+    }
+
+    // Composant User : details utilisateur
+    class UsersComponent extends React.Component {
+        render() {
+            return (
+                <div>
+                    <h1>User 1</h1>
+                    <details>
+                        <summary>Détails utilisateur 1</summary>
+                        <p>All content and graphics on this web site are
+                        the property of the company Refsnes Data.</p>
+                    </details>
                 </div>
             );
         }
@@ -448,13 +484,67 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
     ...
 
     // Exemple d'utilisation:
-
     ReactDOM.render((
         <Router>
             <Route path="/" component={MainComponent} />
             <Route path="/users" component={UsersComponent} />
         </Router>
     ), mountNode);
+
+    // Route imbriquee
+    <Router>
+        <Route path="/" component={MainComponent} />
+        <Route path="users">
+            <IndexRoute component={UsersComponent} />
+            <Route path="user" component={UserComponent} />
+
+            // Avec parametre
+            <Route path=":id" component={UserComponent} />
+        </Route>
+    </Router>
+
+    // Lien vers une route avec parametre : ex.: /users/1
+    <Link to={`users/${userID}`}> {user.name} </Link>
+
+    // Pour récupérer le parametre : props.routeParams.id
+    class UserComponent extends React.Component
+    {
+        constructor(props)
+        {
+            super(props);
+            this.user = UsersComponent.getData().users[props.routeParams.id];
+
+        }
+        ...
+    }
+
+&nbsp;
+> Redirection avec "props.history.push"
+
+    Exemple:
+    constructor(props)
+    {
+        super(propos);
+        ...
+    }
+
+    componentWillMount()
+    {
+        // redirection vers la route "/users" du composant UserComponent
+        this.props.history.push('/users');
+    }
+
+
+&nbsp;
+> Autres solutions pour implémenter une route
+
+    // Pour les petites applications
+    react-router-component : github.com/STRML/react-router-component
+    react-mini-router : github.com/larrymyers/react-mini-router
+
+    // Pour les applications complexes
+    universal-router : www.kriasoft.com/universal-router
+    router5?github.io/docs/understanding-router5.html
 
 
 
