@@ -544,10 +544,76 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
     // Pour les applications complexes
     universal-router : www.kriasoft.com/universal-router
-    router5?github.io/docs/understanding-router5.html
+    router5.github.io/docs/understanding-router5.html
 
 
 
+> Pattern flux
+
+                                    <------  Action <-----
+                                    |                                       |
+    Action --> Dispatcher --> Store * --> View
+
+    * Store unique : équivaut à un state pour stocker les données
+    Et on ne peut agir sur le store (state) que via d'une action(évenement ex.: click)
+
+    + Dispatcher(action) => fait appel à  Reducer(store, action) : gestionnaire d'évènements pour mettre à jour
+    les données dans le Store
+
+    * Exemple : *
+
+    var mountNode = document.querySelector('#mountNode');
+
+    let reducer = (store = { value: 0 }, action) => {
+      switch (action) {
+        case 'INCREMENT':
+          store.value++;
+          console.log('-- INCREMENT --');
+          return store;
+        case 'DECREMENT':
+          store.value--;
+          console.log('-- DECREMENT --');
+          return store;
+        default:
+          console.log('-- INITIAL STORE --');
+          return store;
+      }
+    };
+
+    class Counter extends React.Component {
+      constructor() {
+        super();
+        this.state = reducer(undefined, null);
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+      }
+
+      dispatch(action) {
+        this.setState(prevState => reducer(prevState, action));
+      }
+
+      increment() {
+        this.dispatch('INCREMENT');
+      };
+
+      decrement() {
+        this.dispatch('DECREMENT');
+      };
+
+      render() {
+        return (
+          <div>
+            {this.state.value}
+            <button onClick={this.increment}>+</button>
+            <button onClick={this.decrement}>-</button>
+          </div>
+        )
+      }
+    }
+
+    var CounterElement = React.createElement(Counter);
+
+    ReactDOM.render(CounterElement, mountNode);
 
 
 
