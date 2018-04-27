@@ -550,8 +550,8 @@ Nous allons modifier l'exemple précédent en créant un composant pour le champ
 
 > Pattern flux
 
-                                    <------  Action <-----
-                                    |                                       |
+                      <------  Action <-----
+                    |                       |
     Action --> Dispatcher --> Store * --> View
 
     * Store unique : équivaut à un state pour stocker les données
