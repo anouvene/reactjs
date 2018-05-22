@@ -24,16 +24,15 @@ Et comment utiliser jsx au sein de react : https://facebook.github.io/react/docs
 &nbsp;
 > Notion composant dans react :
 
-Un composant est un emplacement dans la page et il peut avoir :
+Un composant est un emplacement dans une page et il peut avoir :
 
     - de la logique métier
     - des sous-composants
     - du templating
-    - à certains endroit du DOM un autre composant
+    - et à certains endroit du DOM issu d'un autre composant
 
 &nbsp;
 > Créons un premier composant :
-
 
     <!DOCTYPE html>
     <html>
@@ -45,6 +44,7 @@ Un composant est un emplacement dans la page et il peut avoir :
         <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
       </head>
       <body>
+        <!--Conteneur de redu des composants-->
         <div id="mountNode"></div>
 
         <script type="text/babel">
@@ -71,7 +71,7 @@ Un composant est un emplacement dans la page et il peut avoir :
       </body>
     </html>
 
-En terme de résultat, c'est la combinaison de jsx et babel qui permettent au composant de fonctionner.
+=> En terme de résultat, c'est la combinaison de JSX et de BABEL qui permettent au composant de fonctionner.
 
 > Styler un composant
 
