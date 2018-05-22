@@ -6,6 +6,7 @@ Initiation à la librairie react.js de Facebook
 
     - Chrome
     - IDE Visual Studio (Pour installer les plugins)  ou autres
+    - Plugins utiles : Reactjs code snippets, JSX support(déjà installé par défaut dans VS code)
     - Serveur Apache Wamp, Mamp ...
     - Le terminal
 
