@@ -14,7 +14,8 @@ Initiation à la librairie react.js de Facebook
 
     https://facebook.github.io/react/
     https://facebook.github.io/jsx
-    => JSX est une extension syntaxique pour Javascript et ReactJS est basé sur JSX à la manière d4Angular avec TypeScript.
+    => JSX est une extension syntaxique pour Javascript et ReactJS est basé sur JSX 
+    à la manière d'Angular avec TypeScript.
     
 Et comment utiliser jsx au sein de react : https://facebook.github.io/react/docs/jsx-in-depth.html
 
